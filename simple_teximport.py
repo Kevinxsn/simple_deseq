@@ -4,7 +4,6 @@ import numpy as np
 
 class simple_texi:
     def __init__(self, list_df_path, column_names):
-        """Initialize the attributes to describe a car."""
         self.df = [pd.read_table(i) for i in list_df_path]
         self.column_names = column_names
         self.abundance = merge_dataframes_on_column(self.df, 'gene_id', [['TPM'] for _ in self.df], column_names)
