@@ -7,6 +7,6 @@ simple_texi in simple_teximport takes two arguments, the list of path that gene 
 
 It will create three dataframe, abundance, counts and length. 
 
-Can beaccssed by .dataframe, .abundance, .length
+Can be accssed by .dataframe, .abundance, .length
 
 
