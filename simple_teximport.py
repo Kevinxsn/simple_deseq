@@ -16,6 +16,13 @@ class simple_texi:
         length_info = str([self.length.shape, self.length.columns])
         ans = f'abundance information: {abundance_info} \n count information: {counts_info} \n length information: {length_info}'
         return ans
+    
+    def filter(self, threshold, min_samples):
+        self.counts = filter_genes(self.counts, threshold, min_samples)
+        self.length = self.length[self.length['gene_id'].isin(self.counts['gene_id'])]
+        self.abundance = self.abundance[self.abundance['gene_id'].isin(self.counts['gene_id'])]
+    
+    
         
 
 
@@ -51,3 +58,13 @@ def merge_dataframes_on_column(dfs, join_column, columns_to_keep, column_name):
     merged_df.columns = [merged_df.columns[0]] + column_name
     
     return merged_df
+
+
+def filter_genes(dataframe, threshold, min_samples):
+    counts = dataframe.set_index('gene_id')
+    
+    sufficient_counts = (counts >= threshold).sum(axis=1)
+    
+    filtered_genes = sufficient_counts[sufficient_counts >= min_samples].index
+    
+    return dataframe[dataframe['gene_id'].isin(filtered_genes)]
