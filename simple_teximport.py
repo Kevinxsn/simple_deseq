@@ -3,12 +3,29 @@ import numpy as np
 
 
 class simple_texi:
-    def __init__(self, list_df_path, column_names):
+    def __init__(self, list_df_path, column_names, gene_id_index, count_column_index, abundance_column_index, length_column_index):
         self.df = [pd.read_table(i) for i in list_df_path]
         self.column_names = column_names
-        self.abundance = merge_dataframes_on_column(self.df, 'gene_id', [['TPM'] for _ in self.df], column_names)
-        self.counts = merge_dataframes_on_column(self.df, 'gene_id', [['expected_count'] for _ in self.df], column_names)
-        self.length = merge_dataframes_on_column(self.df, 'gene_id', [['effective_length'] for _ in self.df], column_names)
+        gene_id = self.df[0].columns[gene_id_index]
+        self.gene_id = gene_id
+        
+        self.counts = merge_dataframes_on_column(self.df, gene_id, [[_.columns[count_column_index]] for _ in self.df], column_names)
+        
+        if abundance_column_index is not None:
+            #abundance_id = self.df[0].columns[abundance_column_index]
+            
+            self.abundance = merge_dataframes_on_column(self.df, gene_id, [[_.columns[abundance_column_index]] for _ in self.df], column_names)
+        else:
+            self.abundance = None
+            
+        if length_column_index is not None:
+            #length_id = self.df[0].columns[length_column_index]
+            self.length = merge_dataframes_on_column(self.df, gene_id, [[_.columns[length_column_index]] for _ in self.df], column_names)
+        else:
+            self.length = None
+        
+        
+    
         
     def __str__(self):
         abundance_info = str([self.abundance.shape, self.abundance.columns])
@@ -18,9 +35,11 @@ class simple_texi:
         return ans
     
     def filter(self, threshold, min_samples):
-        self.counts = filter_genes(self.counts, threshold, min_samples)
-        self.length = self.length[self.length['gene_id'].isin(self.counts['gene_id'])]
-        self.abundance = self.abundance[self.abundance['gene_id'].isin(self.counts['gene_id'])]
+        self.counts = filter_genes(self, self.counts, threshold, min_samples)
+        if self.length is not None:
+            self.length = self.length[self.length[self.gene_id].isin(self.counts[self.gene_id])]
+        if self.abundance is not None:
+            self.abundance = self.abundance[self.abundance[self.gene_id].isin(self.counts[self.gene_id])]
     
     
         
@@ -50,7 +69,6 @@ def merge_dataframes_on_column(dfs, join_column, columns_to_keep, column_name):
         df[[join_column] + columns] for df, columns in zip(dfs, columns_to_keep)
         if join_column in df.columns and all(col in df.columns for col in columns)
     ]
-    
     # Merge all dataframes on the join column
     merged_df = reduced_dfs[0]
     for df in reduced_dfs[1:]:
@@ -60,11 +78,11 @@ def merge_dataframes_on_column(dfs, join_column, columns_to_keep, column_name):
     return merged_df
 
 
-def filter_genes(dataframe, threshold, min_samples):
-    counts = dataframe.set_index('gene_id')
+def filter_genes(self, dataframe, threshold, min_samples):
+    counts = dataframe.set_index(self.gene_id)
     
     sufficient_counts = (counts >= threshold).sum(axis=1)
     
     filtered_genes = sufficient_counts[sufficient_counts >= min_samples].index
     
-    return dataframe[dataframe['gene_id'].isin(filtered_genes)]
+    return dataframe[dataframe[self.gene_id].isin(filtered_genes)]
