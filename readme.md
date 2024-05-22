@@ -1,5 +1,3 @@
-Here is simple_deseq & simple_teximport
-
 ## Introduction of simple_teximprt and simpel_deseq:
 
 DESeq and tximport are two popular bioinformatics packages used with R. They are essential for the analysis of RNA-sequencing (RNA-seq) data, which is crucial for understanding gene expression differences across various biological samples.
