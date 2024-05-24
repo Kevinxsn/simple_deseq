@@ -8,10 +8,10 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 
 
 
-## simple_teximport
+# simple_teximport
 
 
-# simple_tximport
+## simple_tximport
 
 `simeple_tximport` is a Python package designed to help users convert raw table data into a format suitable for analysis with `simple_deseq`.
 
@@ -68,9 +68,9 @@ To print a brief summary of the class, use `print(txi)`.
 
 ---
 
-## simple_deseq
-
 # simple_deseq
+
+## simple_deseq
 
 `simeple_deseq` is a Python package for performing differential expression analysis on RNA-Seq data. The package provides methods for normalizing read counts, calculating log2 fold changes, estimating dispersion parameters, computing statistical significance, and computing p-values for each gene.
 
@@ -88,7 +88,7 @@ To install the necessary dependencies, you can use pip:
 
 Here is a basic usage example of how to use the `simeple_deseq` class and its methods.
 
-# Import the packages
+#### Import the packages
 
 ```python
 import numpy as np
