@@ -10,7 +10,6 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 
 ## simple_teximport
 
-Certainly! Here is a revised version for your README:
 
 # simple_tximport
 
