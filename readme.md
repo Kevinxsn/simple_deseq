@@ -67,3 +67,36 @@ After creating an instance of `simple_texi`, it will convert the data into a cla
 To print a brief summary of the class, use `print(txi)`.
 
 ---
+
+## simple_deseq
+
+# simple_deseq
+
+`simeple_deseq` is a Python package for performing differential expression analysis on RNA-Seq data. The package provides methods for normalizing read counts, calculating log2 fold changes, estimating dispersion parameters, computing statistical significance, and computing p-values for each gene.
+
+## Install
+
+To install the necessary dependencies, you can use pip:
+
+`pip install numpy pandas scipy statsmodels`
+
+## Usage
+
+`simeple_deseq` takes two arguments: 
+1. `conditions`: list of binary strings that indicates the experimental conditions (treated vs. control) of the datasets
+2. `txi`: A dataframe outputed from simple_txi. Combined the raw counts from each datasets into a single dataframe 
+
+Here is a basic usage example of how to use the `simeple_deseq` class and its methods.
+
+# Import the packages
+
+```python
+import numpy as np
+import pandas as pd
+from scipy.stats import gmean
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+from simple_deseque import simple_deseque
+```
+
+
