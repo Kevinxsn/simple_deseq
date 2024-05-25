@@ -99,4 +99,19 @@ import statsmodels.formula.api as smf
 from simple_deseque import simple_deseque
 ```
 
+#### Import Datasets
+
+Import datasets with `simeple_teximport` as instructed in the `simeple_teximport` section above. `simeple_teximport` outputs a dataframe of combined raw data in the format that is suitable for analysis with `simeple_deseq`.
+
+#### Functions
+
+1. `Normalize`: normalize read counts for each gene
+2. `base_mean_calc`: Calculates the base mean for each gene.
+3. `log2_fc`: Calculates the log2 fold change (treated vs. control) for each gene.
+4. `estimate_dispersion`:Estimates the dispersion for each gene based on the variance and mean.
+5. `stats`: Calculates the statistical significance for each gene by dividing the log2 fold change by the estimated dispersion.
+
+
+
+
 
