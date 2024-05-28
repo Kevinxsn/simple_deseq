@@ -47,10 +47,21 @@ class simple_texi:
     
         
     def __str__(self):
-        abundance_info = str([self.abundance.shape, self.abundance.columns])
+        
         counts_info = str([self.counts.shape, self.counts.columns])
-        length_info = str([self.length.shape, self.length.columns])
-        ans = f'abundance information: {abundance_info} \n count information: {counts_info} \n length information: {length_info}'
+        
+        if self.length is not None:
+            length_info = str([self.length.shape, self.length.columns])
+        else:
+            length_info = 'There is no length data for this simple_texi class'
+        
+        if self.abundance is not None:
+            abundance_info = str([self.abundance.shape, self.abundance.columns])
+        else:
+            abundance_info = 'There is no abundance data for this simple_texi class'
+            
+            
+        ans = f'count information: {counts_info} \n abundance information: {abundance_info} \n length information: {length_info}'
         return ans
     
     def filter(self, threshold, min_samples):
