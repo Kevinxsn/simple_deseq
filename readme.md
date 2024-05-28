@@ -94,8 +94,6 @@ Here is a basic usage example of how to use the `simeple_deseq` class and its me
 import numpy as np
 import pandas as pd
 from scipy.stats import gmean
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
 from simple_deseque import simple_deseque
 ```
 
