@@ -135,6 +135,7 @@ def estimate_dispersion(test_txi):
 def stats(log2fc, dispersions, test_txi):
     result = []
     genes = get_genes(test_txi)
+    columns = test_txi.counts.columns
     for gene in genes:
         fc = log2fc.loc[gene, 'Log2FoldChange']
         se = dispersions.loc[gene, 'dispersion']
