@@ -9,10 +9,24 @@ class simple_texi:
         gene_id = self.df[0].columns[gene_id_index]
         self.gene_id = gene_id
         
+        ## Make sure every datafrom having a different column name
+        # Assuming self.df is a list of DataFrames
+        for i in range(len(self.df)):
+            # Rename the column at count_column_index by appending the column name
+            column_to_rename = self.df[i].columns[count_column_index]
+            new_column_name = column_to_rename + column_names[i]
+            self.df[i].rename(columns={column_to_rename: new_column_name}, inplace=True)
+
+        
         self.counts = merge_dataframes_on_column(self.df, gene_id, [[_.columns[count_column_index]] for _ in self.df], column_names)
         
         if abundance_column_index is not None:
             #abundance_id = self.df[0].columns[abundance_column_index]
+            for i in range(len(self.df)):
+            # Rename the column at abundance_column_index by appending the column name
+                column_to_rename = self.df[i].columns[abundance_column_index]
+                new_column_name = column_to_rename + column_names[i]
+                self.df[i].rename(columns={column_to_rename: new_column_name}, inplace=True)
             
             self.abundance = merge_dataframes_on_column(self.df, gene_id, [[_.columns[abundance_column_index]] for _ in self.df], column_names)
         else:
@@ -20,6 +34,11 @@ class simple_texi:
             
         if length_column_index is not None:
             #length_id = self.df[0].columns[length_column_index]
+            for i in range(len(self.df)):
+            # Rename the column at length_column_index by appending the column name
+                column_to_rename = self.df[i].columns[length_column_index]
+                new_column_name = column_to_rename + column_names[i]
+                self.df[i].rename(columns={column_to_rename: new_column_name}, inplace=True)
             self.length = merge_dataframes_on_column(self.df, gene_id, [[_.columns[length_column_index]] for _ in self.df], column_names)
         else:
             self.length = None
