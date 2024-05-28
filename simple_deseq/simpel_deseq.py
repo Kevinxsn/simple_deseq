@@ -59,6 +59,22 @@ def base_mean_calc(txi):
 #basic log2 fold change
 #need to fix: should not need the parameter condition
 #basic log2 fold change
+
+
+
+def get_conditions(conditions):
+    str_1 = conditions[0]
+    new_conditions = []
+    for condition in conditions:
+        if condition == str_1:
+            new_conditions.append(0)
+        else:
+            new_conditions.append(1)
+    return np.array(new_conditions)
+
+
+
+
 def log2_fc(conditions, test_txi):
     """ Function to compute log2 fold change for each gene
     
