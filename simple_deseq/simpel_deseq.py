@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import os
 from scipy.stats import gmean
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
+#import statsmodels.api as sm
+#import statsmodels.formula.api as smf
 
 class simple_deseque:
     def __init__(self, conditions, txi):
@@ -149,6 +149,7 @@ def stats(log2fc, dispersions, test_txi):
 
 # INCOMPLETE!!!
 # finding the estimate dispersion parameter as a function of the mean using a negative binomial distribution 
+"""
 def negative_binomial_dispersion(test_txi):
     columns = test_txi.counts.columns
     normalized_counts = normalize(test_txi)
@@ -175,3 +176,4 @@ def negative_binomial_dispersion(test_txi):
     results_df = pd.DataFrame(results)
 
     return results_df
+"""
