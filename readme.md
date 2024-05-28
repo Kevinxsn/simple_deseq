@@ -6,6 +6,8 @@ However, there is a limitation with these tools. Since they are only compatible 
 
 To address this issue, we developed simple_tximport and simple_deseq, two Python packages that replicate part of the functionality of tximport and DESeq. These tools enable researchers to run the entire DESeq analysis pipeline completely in Python, streamlining the process and enhancing efficiency.
 
+**If you want to know how to use simple_tximort and simple_deseq quickly, please run the python notebook called tutorial under simple_deseq file! It will tell howt to use them step by step!**
+
 
 
 # simple_teximport
