@@ -1,0 +1,11 @@
+LICENSE
+setup.py
+simple_deseq/__init__.py
+simple_deseq/simpel_deseq.py
+simple_deseq/simple_teximport.py
+simple_deseq/version.py
+simple_deseq.egg-info/PKG-INFO
+simple_deseq.egg-info/SOURCES.txt
+simple_deseq.egg-info/dependency_links.txt
+simple_deseq.egg-info/entry_points.txt
+simple_deseq.egg-info/top_level.txt
