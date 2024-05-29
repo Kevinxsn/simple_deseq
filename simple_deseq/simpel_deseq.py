@@ -2,18 +2,43 @@ import numpy as np
 import pandas as pd
 import os
 from scipy.stats import gmean
+import joblib
 #import statsmodels.api as sm
 #import statsmodels.formula.api as smf
+import statsmodels.stats.multitest as multitest
+
 
 class simple_deseque:
     def __init__(self, conditions, txi):
         self.txi = txi
         self.conditions = conditions
-        self.base_mean = base_mean_calc(self.txi)
         self.normalize = normalize(self.txi)
+        
+        self.base_mean = base_mean_calc(self.txi)
         self.fold_change = log2_fc(self.conditions, self.txi)
         self.dispersions = estimate_dispersion(self.txi)
         self.stat = stats(self.fold_change, self.dispersions, self.txi)
+        
+        dataframes = [self.base_mean, self.fold_change, self.dispersions, self.stat]
+
+        # Initialize the result with the first DataFrame
+        result = dataframes[0]
+
+        # Merge DataFrames in a loop
+        for df in dataframes[1:]:
+            result = result.merge(df, on='gene_id', how='outer')
+        
+        self.result = result
+        
+        predict_X = self.result.set_index('gene_id')
+        predict_X = predict_X.fillna(0)
+        best_rf = joblib.load('random_forest_model.pkl')
+        y_pred = best_rf.predict(predict_X)
+        self.result['p-value'] = y_pred
+        min_val = np.min(y_pred)
+        max_val = np.max(y_pred)
+        normalized_data = (y_pred - min_val) / (max_val - min_val)
+        self.result['p-value adjusted'] = normalized_data
         
     
 #helper method, outputs a list of gene ids
