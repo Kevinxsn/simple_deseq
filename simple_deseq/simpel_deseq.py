@@ -3,9 +3,6 @@ import pandas as pd
 import os
 from scipy.stats import gmean
 import joblib
-#import statsmodels.api as sm
-#import statsmodels.formula.api as smf
-import statsmodels.stats.multitest as multitest
 from sklearn.preprocessing import StandardScaler
 
 
