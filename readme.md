@@ -10,11 +10,17 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 **If you do not have anaconda environment installed in your local machine, please git clone this whole repo and run it on the data hub since we need pandas and numpy**
 
 
+## Install Instructions
+
+Navigate to the directory in which you would like to download this tool and clone the package using the command:
+`git clone https://github.com/Kevinxsn/simple_deseq.git`
+
+Navigate into the cloned directory and and install the tool. You can install `simple_deseq` tool with the following command:
+`cd simple_deseq`
+`python setup.py install`
 
 # simple_teximport
 
-
-## simple_tximport
 
 `simeple_tximport` is a Python package designed to help users convert raw table data into a format suitable for analysis with `simple_deseq`.
 
@@ -72,8 +78,6 @@ To print a brief summary of the class, use `print(txi)`.
 ---
 
 # simple_deseq
-
-## simple_deseq
 
 `simeple_deseq` is a Python package for performing differential expression analysis on RNA-Seq data. The package provides methods for normalizing read counts, calculating log2 fold changes, estimating dispersion parameters, computing statistical significance, and computing p-values for each gene.
 
