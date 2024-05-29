@@ -42,6 +42,8 @@ class simple_texi:
             self.length = merge_dataframes_on_column(self.df, gene_id, [[_.columns[length_column_index]] for _ in self.df], column_names)
         else:
             self.length = None
+            
+        self.counts = self.counts.rename(columns={self.counts.columns[0]: 'gene_id'})
         
         
     
@@ -109,10 +111,10 @@ def merge_dataframes_on_column(dfs, join_column, columns_to_keep, column_name):
 
 
 def filter_genes(self, dataframe, threshold, min_samples):
-    counts = dataframe.set_index(self.gene_id)
+    counts = dataframe.set_index(self.counts.columns[0])
     
     sufficient_counts = (counts >= threshold).sum(axis=1)
     
     filtered_genes = sufficient_counts[sufficient_counts >= min_samples].index
     
-    return dataframe[dataframe[self.gene_id].isin(filtered_genes)]
+    return dataframe[dataframe[self.counts.columns[0]].isin(filtered_genes)]

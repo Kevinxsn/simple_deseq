@@ -6,6 +6,7 @@ import joblib
 #import statsmodels.api as sm
 #import statsmodels.formula.api as smf
 import statsmodels.stats.multitest as multitest
+from sklearn.preprocessing import StandardScaler
 
 
 class simple_deseque:
@@ -30,10 +31,16 @@ class simple_deseque:
         
         self.result = result
         
+        
+        scaler = StandardScaler()
         predict_X = self.result.set_index('gene_id')
         predict_X = predict_X.fillna(0)
+        predict_X = scaler.fit_transform(predict_X)
+        
+        
         best_rf = joblib.load('random_forest_model.pkl')
         y_pred = best_rf.predict(predict_X)
+        
         self.result['p-value'] = y_pred
         min_val = np.min(y_pred)
         max_val = np.max(y_pred)
