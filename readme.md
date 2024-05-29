@@ -12,17 +12,17 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 
 ## Install Instructions
 
-Navigate to the directory in which you would like to download this tool and clone the package using the command:
+1. Navigate to the directory in which you would like to download this tool and clone the package using the command:
 `git clone https://github.com/Kevinxsn/simple_deseq.git`
 
 
-Navigate into the cloned directory and and install the tool. You can install `simple_deseq` tool with the following command:
+2. Navigate into the cloned directory and and install the tool. You can install `simple_deseq` tool with the following command:
 `cd simple_deseq`
 
 `python setup.py install`
 
 
-Then, you can import the simple_deseq package into your own notebook through import:
+3. Then, you can import the simple_deseq package into your own notebook through import:
 `import simple_deseq`
 
 `from simple_deseq import simple_teximport as texi`
@@ -32,7 +32,7 @@ Then, you can import the simple_deseq package into your own notebook through imp
 *be aware that the package is named simple_deseq and the module is named simpel_deseq!
 
 
-Additionally, to use the package, you need the following packages: `numpy`, `pandas`, and `scipy`. Use the following commands to install those packages if necessary:
+4. Additionally, to use the package, you need the following packages: `numpy`, `pandas`, and `scipy`. Use the following commands to install those packages if necessary:
 
 `pip install numpy`
 
