@@ -6,8 +6,8 @@ However, there is a limitation with these tools. Since they are only compatible 
 
 To address this issue, we developed simple_tximport and simple_deseq, two Python packages that replicate part of the functionality of tximport and DESeq. These tools enable researchers to run the entire DESeq analysis pipeline completely in Python, streamlining the process and enhancing efficiency.
 
-**!!!Important Note!!!: Dear peer reviewer: If you want to know how to use simple_tximport and simple_deseq quickly, please run the python notebook called tutorial under simple_deseq file! It will tell you how to use them step by step!**
-**If you do not have anaconda environment installed in your local machine, please git clone this whole repo and run it on the datahub since we need pandas and numpy and some other packages**
+**!!!Important Note!!!: Dear peer reviewer: If you want to know how to use simple_tximport and simple_deseq more conviniently, please run the python notebook called tutorial in simple_deseq folder! It will tell you how to use them step by step!**
+**If you do not have anaconda environment installed in your local machine, please git clone this entire repo and run it on the datahub since we need pandas and numpy and some other packages**
 
 
 ## Install Instructions
@@ -43,6 +43,8 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 `pip install sklearn==1.0`
 
 `pip install joblib==1.4.2`
+
+`pip install statsmodels`
 
 
 # simple_teximport
