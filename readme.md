@@ -17,17 +17,24 @@ Navigate to the directory in which you would like to download this tool and clon
 
 Navigate into the cloned directory and and install the tool. You can install `simple_deseq` tool with the following command:
 `cd simple_deseq`
+
 `python setup.py install`
 
 Then, you can import the simple_deseq package into your own notebook through import:
 `import simple_deseq`
+
 `from simple_deseq import simple_teximport as texi`
+
 `from simple_deseq import simpel_deseq as deq`
+
 *be aware that the package is named simple_deseq and the module is named simpel_deseq!
 
 Additionally, to use the package, you need the following packages: `numpy`, `pandas`, and `scipy`. Use the following commands to install those packages if necessary:
+
 `pip install numpy`
+
 `pip install pandas`
+
 `pip install scipy`
 
 # simple_teximport
