@@ -40,9 +40,9 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 
 `pip install scipy`
 
-`pip install sklearn`
+`pip install sklearn==1.0`
 
-`pip install joblib`
+`pip install joblib==1.4.2`
 
 
 # simple_teximport
