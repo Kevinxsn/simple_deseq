@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 import os
+import scipy.stats 
 from scipy.stats import gmean
 import joblib
 from sklearn.preprocessing import StandardScaler
-import scipy.stats 
 from statsmodels.stats.multitest import multipletests
 
 class simple_deseque:
