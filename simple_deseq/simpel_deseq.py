@@ -16,8 +16,9 @@ class simple_deseque:
         self.fold_change = log2_fc(self.conditions, self.txi)
         self.dispersions = estimate_dispersion(self.txi)
         self.stat = stats(self.fold_change, self.dispersions, self.txi)
+        self.pvalue, self.adjusted_p = p_values(self.conditions, self.txi)
         
-        dataframes = [self.base_mean, self.fold_change, self.dispersions, self.stat]
+        dataframes = [self.base_mean, self.fold_change, self.dispersions, self.stat, self.pvalue, self.adjusted_p]
 
         # Initialize the result with the first DataFrame
         result = dataframes[0]
@@ -200,34 +201,55 @@ def stats(log2fc, dispersions, test_txi):
     return result
 
 
-
-# INCOMPLETE!!!
-# finding the estimate dispersion parameter as a function of the mean using a negative binomial distribution 
-"""
-def negative_binomial_dispersion(test_txi):
+def p_values(conditions, test_txi):
+    
+    conditions = get_conditions(conditions)
     columns = test_txi.counts.columns
+    
+    #check if the conditions match the samples
+    if len(conditions) != len(columns)-1:
+        raise ValueError("the number of conditions does not match the number of samples!")
+            
+    genes = get_genes(test_txi)
+    
     normalized_counts = normalize(test_txi)
+    
+    data = normalized_counts.rename(columns=lambda x: "")
+    data = data.values
+    
+    treated = data[:, conditions == 1]
+    control = data[:, conditions == 0]
+    
+    ttest_results = []
+    adj_results = []
+    
+    for i in range(len(treated)):
+        result = scipy.stats.ttest_ind(treated[i], control[i])
+        ttest_results.append(result)
+    
+        _, adj_p, _, _ = multipletests(result, method='fdr_bh')
+        adj_results.append(adj_p)
+    
+    ttest_results
+    ttest_array = np.array(ttest_results)
+    adj_results = np.array(adj_results)
+    
+    
+    
+    ttest_df = pd.DataFrame({
+        columns[0]: genes,
+        "p_values": ttest_array[:, 1]
+    })
+
+    ttest_df = ttest_df.set_index(columns[0])
+    
+    adjusted_df = pd.DataFrame({
+        columns[0]: genes,
+        "p_adjusted" : adj_results[:,1]
+    })
+    
+    adjusted_df = adjusted_df.set_index(columns[0])
 
     
-    counts_long = normalized_counts.reset_index().melt(id_vars=columns[0], var_name='sample', value_name='read_count')
     
-    results = []
-    genes = counts_long[columns[0]].unique()
-    for gene in genes:
-        df_gene = counts_long[counts_long[columns[0]] == gene]
-        
-        # use the negative binomial model
-        model = smf.glm(formula='read_count ~ 1', data=df_gene, family=sm.families.NegativeBinomial())
-        result = model.fit()
-        
-        # extract the dispersion parameter
-        dispersion = result.scale
-        mean_read_count = df_gene['read_count'].mean()
-        
-        # Append the results
-        results.append({columns[0]: gene, 'mean': mean_read_count, 'dispersion': dispersion})
-
-    results_df = pd.DataFrame(results)
-
-    return results_df
-"""
+    return ttest_df, adjusted_df
