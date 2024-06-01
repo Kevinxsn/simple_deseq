@@ -19,7 +19,7 @@ class simple_deseque:
         self.stat = stats(self.fold_change, self.dispersions, self.txi)
         self.pvalue, self.adjusted_p = p_values(self.conditions, self.txi)
         
-        dataframes = [self.base_mean, self.fold_change, self.dispersions, self.stat, self.pvalue, self.adjusted_p]
+        dataframes = [self.base_mean, self.fold_change, self.dispersions, self.stat]
 
         # Initialize the result with the first DataFrame
         result = dataframes[0]
@@ -45,6 +45,8 @@ class simple_deseque:
         max_val = np.max(y_pred)
         normalized_data = (y_pred - min_val) / (max_val - min_val)
         self.result['p-value adjusted'] = normalized_data
+
+        self.result = pd.concat([self.result, self.pvalue, self.adjusted_p]) axis = 0)
         
     
 #helper method, outputs a list of gene ids
