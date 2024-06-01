@@ -4,7 +4,8 @@ import os
 from scipy.stats import gmean
 import joblib
 from sklearn.preprocessing import StandardScaler
-
+import scipy.stats 
+from statsmodels.stats.multitest import multipletests
 
 class simple_deseque:
     def __init__(self, conditions, txi):
