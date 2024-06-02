@@ -46,7 +46,11 @@ class simple_deseque:
         normalized_data = (y_pred - min_val) / (max_val - min_val)
         self.result['p-value adjusted'] = normalized_data
 
-        self.result = pd.concat([self.result, self.pvalue, self.adjusted_p], axis = 1)
+        df_pvalue_re = self.pvalue.reset_index()
+        df_adjusted_p_re = self.adjusted_p.reset_index()
+        
+        self.result = pd.merge(self.result, df_pvalue_re, on='gene_id')
+        self.result = pd.merge(self.result, df_adjusted_p_re, on='gene_id')
         
     
 #helper method, outputs a list of gene ids
