@@ -46,7 +46,7 @@ class simple_deseque:
         normalized_data = (y_pred - min_val) / (max_val - min_val)
         self.result['p-value adjusted'] = normalized_data
 
-        self.result = pd.concat([self.result, self.pvalue, self.adjusted_p]) axis = 0)
+        self.result = pd.concat([self.result, self.pvalue, self.adjusted_p]) axis = 1)
         
     
 #helper method, outputs a list of gene ids
