@@ -51,6 +51,9 @@ class simple_deseque:
         
         self.result = pd.merge(self.result, df_pvalue_re, on='gene_id')
         self.result = pd.merge(self.result, df_adjusted_p_re, on='gene_id')
+
+        self.result = self.result.rename(columns={'p_values': 'ttest_p_values', 'p_adjusted': 'ttest_p_adjusted'})
+        self.result = self.result.rename(columns={'Log2FoldChange': 'log2FoldChange', 'Stats': 'stats'})
         
     
 #helper method, outputs a list of gene ids
