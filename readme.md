@@ -16,7 +16,7 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 `git clone https://github.com/Kevinxsn/simple_deseq.git`
 
 
-2. Navigate into the cloned directory and and install the tool. You can install `simple_deseq` tool with the following command:
+2. Navigate into the cloned directory and install the tool. You can install `simple_deseq` tool with the following command:
 `cd simple_deseq`
 
 `python setup.py install`
@@ -129,7 +129,7 @@ Here is a basic usage example of how to use the `simeple_deseq` class and its me
 import numpy as np
 import pandas as pd
 from scipy.stats import gmean
-from simple_deseque import simple_deseque
+from simple_deseque import simpel_deseque
 ```
 
 #### Import Datasets
