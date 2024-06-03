@@ -121,7 +121,7 @@ To install the necessary dependencies, you can use pip:
 1. `conditions`: list of  strings that indicates the experimental conditions (treated vs. control) of the datasets. An example input would be ['chow', 'chow', 'chow', 'HFD', HFD', 'HFD']. In this case, the fold change would be calculated in terms of HFD vs. Chow. 
 2. `txi`: A dataframe outputed from simple_txi. Combined the raw counts from each datasets into a single dataframe 
 
-Here is a basic usage example of how to use the `simeple_deseq` class and its methods.
+Here is a basic usage example of how to use the `simpel_deseq` class and its methods.
 
 #### Import the packages
 
