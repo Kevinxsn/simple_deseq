@@ -67,7 +67,7 @@ To address this issue, we developed simple_tximport and simple_deseq, two Python
 ## Example
 
 ```python
-import simpel_teximport
+import simple_teximport
 
 list_of_def_path = ['/path/to/file1', '/path/to/file2']
 column_names = ['old1', 'young1']
